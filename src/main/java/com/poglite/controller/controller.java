@@ -27,14 +27,14 @@ public class controller{
      */
     //方法的注解
     @Resource
-   private I_Service_UserRegister UR;
+   private I_Service_UserRegister IUR;
     //指定的.do
     @RequestMapping("welcome.do")
 public String welcome(UserModel UM , HttpServletRequest request, HttpServletResponse response,HttpSession session, HttpCookie cookie)
     {
-        UR.userregister(UM);
+        IUR.userregister(UM);
         System.out.println(UM.getUsername());
-        List<UserModel> list =UR.selectuser();
+        List<UserModel> list =IUR.selectuser();
 request.setAttribute("selectAll",list);
 session.setAttribute("selectAll",list);
 
