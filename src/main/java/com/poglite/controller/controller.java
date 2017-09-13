@@ -4,14 +4,11 @@ package com.poglite.controller;
  * Created by Administrator on 2017/7/11.
  */
 
-import com.poglite.dao.UserRegister;
-import com.poglite.idao.IUserRegister;
+import com.poglite.iservice.I_Service_UserRegister;
+
 import com.poglite.model.UserModel;
-import org.json.JSONObject;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttribute;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -25,16 +22,19 @@ import java.util.List;
 //地址
 @RequestMapping("/demo")
 public class controller{
+    /**
+     *
+     */
     //方法的注解
     @Resource
-     private IUserRegister UR;
+   private I_Service_UserRegister UR;
     //指定的.do
     @RequestMapping("welcome.do")
 public String welcome(UserModel UM , HttpServletRequest request, HttpServletResponse response,HttpSession session, HttpCookie cookie)
     {
         UR.userregister(UM);
         System.out.println(UM.getUsername());
-        List<UserModel> list = UR.selectuser();
+        List<UserModel> list =UR.selectuser();
 request.setAttribute("selectAll",list);
 session.setAttribute("selectAll",list);
 
